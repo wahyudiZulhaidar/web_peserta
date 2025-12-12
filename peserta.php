@@ -18,7 +18,6 @@ echo '
 
 <a href="insert.php?id=" class="button button-add"> Tambah Data Baru </a>
 
-<div class="center">
 <table border="1px solid black" ; cellpadding="10" ; cellspacing="0">
         <thead>
             <tr>

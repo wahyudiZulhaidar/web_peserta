@@ -1,10 +1,17 @@
+# Cara Download Kode
+Nanti simpan di folder `htdocs`
+![Gambar XAMPP](![Gambar XAMPP](https://i.ibb.co.com/7sSQ1Fw/image.png)
+
+1. Pilih tombol `Code` warna *benda itu* hijau
+2. Download ZIP
+3. Ekstrak 
+
 # Persiapan Project
 
 ## 1. Konfigurasi Server Lokal XAMPP
 Aktifkan `Apache` dan `MySQL` di XAMPP
 
 ![Gambar XAMPP](https://i.ibb.co.com/JjKvD93g/Cuplikan-layar-2025-12-12-094914.png)
-
 
 ## 2. Konfigurasi Project File
 Taruh folder project dalam folder `htdocs` di direktori lokasi instalasi XAMPP, biasanya ada di
