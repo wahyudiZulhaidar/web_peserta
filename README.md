@@ -1,6 +1,6 @@
 # Cara Download Kode
 Nanti simpan di folder `htdocs`
-![Gambar XAMPP](![Gambar XAMPP](https://i.ibb.co.com/7sSQ1Fw/image.png)
+![Gambar XAMPP](https://i.ibb.co.com/7sSQ1Fw/image.png)
 
 1. Pilih tombol `Code` warna *benda itu* hijau
 2. Download ZIP
