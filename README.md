@@ -1,0 +1,123 @@
+# Persiapan Project
+
+## 1. Konfigurasi Server Lokal XAMPP
+Aktifkan `Apache` dan `MySQL` di XAMPP
+
+![Gambar XAMPP](https://i.ibb.co.com/JjKvD93g/Cuplikan-layar-2025-12-12-094914.png)
+
+
+## 2. Konfigurasi Project File
+Taruh folder project dalam folder `htdocs` di direktori lokasi instalasi XAMPP, biasanya ada di
+
+```bash
+C:\xampp\htdocs
+```
+
+
+## 3. Database
+Struktur tabel
+
+| Nama Kolom | Tipe Data | Nilai           | Aturan                         |
+| :--------  | :-------  | :-----          | :--                            |
+| `nomor`    | `int`     | `11`            | `NOT_NULL` `AUTO_INCREMENT`    |
+| `nama`     | `varchar` | `255`           |                                |
+| `alamat`   | `text`    |                 |                                |
+| `telp`     | `varchar` | `255`           |                                |
+| `email`    | `varchar` | `255`           |                                |
+| `jk`       | `enum`    | `Pria` `Wanita` |                                |
+>   Catatan : Nilai pada nomor akan terus bertambah walaupun nomor pada data sebelumnya di hapus
+
+### Pembuatan Database
+
+#### Metode 1 - Menggunakan phpMyAdmin (Rekomendasi Pemula)
+Buka phpMyAdmin di web browser
+
+```bash
+http://localhost/phpmyadmin
+```
+Ikuti tutorial dari sini
+
+[Artikel](https://www.hostinger.com/id/tutorial/cara-membuat-database-mysql-phpmyadmin-xampp) atau [Video Youtube](https://youtu.be/_oPaKdmauLw)
+
+#### Metode 2 - Kueri (Windows)
+Ganti `nama_database` dan `nama_tabel` sesuai preferensi. Langkah 1 dan 2 bisa di skip dengan menggunakan kueri SQL langsung di phpMyAdmin, ada di tab `SQL`
+
+1. Buka Terminal dan arahkan ke direktori ini
+
+```bash
+C:\xampp\mysql\bin
+```
+
+atau langsung masukkan perintah
+
+```bash
+cd C:\xampp\mysql\bin
+```
+
+> Bisa lansung pencet `Shell` di XAMPP Control Panel
+
+2. Masukkan perintah
+
+```bash
+mysql -u root -p
+```
+
+jika tidak bisa
+
+```bash
+./mysql -u root -p
+```
+
+Enter untuk melanjutkan di bagian password (biarkan kosong)
+
+3. Kueri pembuatan Database
+
+```bash
+CREATE DATABASE nama_database;
+```
+[Dokumentasi](https://www.w3schools.com/mysql/mysql_create_db.asp)
+
+4. Pilih Database
+
+```bash
+USE nama_database;
+```
+
+5. Kueri pembuatan tabel
+
+```bash
+CREATE TABLE `peserta` ( `nomor` int(11) NOT NULL AUTO_INCREMENT, `nama` varchar(255) NOT NULL, `alamat` text NOT NULL, `telp` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `jk` enum('Pria','Wanita') NOT NULL, PRIMARY KEY (`nomor`));
+```
+[Dokumentasi](https://www.w3schools.com/mysql/mysql_create_table.asp)
+
+6. Contoh Kueri isi data
+```bash
+INSERT INTO `peserta` (`nama`, `alamat`, `telp`, `email`, `jk`) VALUES ('Muh. Zulhaidar Wahyudi', 'Kota Makassar', '082123456789', 'zulhaidarwahyudi@gmail.com', 'Pria');
+```
+[Dokumentasi](https://www.w3schools.com/mysql/mysql_insert.asp)
+
+7. Contoh Kueri ubah data, sesuaikan nomor dengan data yang akan di ubah
+```bash
+UPDATE peserta SET nama = 'Nama Baru Disini', alamat = 'Alamat Baru Disini', telp = '081234567890', email = 'emailbaru@gmail.com', jk = 'Wanita' WHERE nomor = 1;
+```
+[Dokumentasi](https://www.w3schools.com/mysql/mysql_update.asp)
+
+8. Contoh Kueri hapus data, sesuaikan nomor dengan data yang akan dihapus
+```bash
+DELETE FROM peserta WHERE nomor = 1;
+```
+[Dokumentasi](https://www.w3schools.com/mysql/mysql_delete.asp)
+
+9. Contoh kueri tampilkan seluruh data
+```bash
+SELECT * FROM peserta
+```
+[Dokumentasi](https://www.w3schools.com/mysql/mysql_select.asp)
+
+## 4. Konfigurasi
+
+Pada file `config.php` atur nama database pada kode
+
+```bash
+$db_name = 'nama_database';
+```
