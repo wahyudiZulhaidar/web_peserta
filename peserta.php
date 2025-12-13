@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <?php
 require_once 'config.php';
@@ -7,18 +8,18 @@ $sql = "SELECT * FROM peserta";
 
 $query = mysqli_query($conn, $sql);
 
-if(!$query) {
+if (!$query) {
     die('SQL Error: ' . mysqli_error($conn));
 }
 
 echo '
-<div class="center">
+<div class="position-relative top-0 start-50">
 <h1>Nama Peserta</h1>
 </div>
 
-<a href="insert.php?id=" class="button button-add"> Tambah Data Baru </a>
+<a href="insert.php?id=" class="btn btn-primary"> Tambah Data Baru </a><br><br>
 
-<table border="1px solid black" ; cellpadding="10" ; cellspacing="0">
+<table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Nama</th>
@@ -36,12 +37,12 @@ while ($row = mysqli_fetch_array($query)) {
     echo '<tr>
             <td>' . $row['nama'] . '</td>
             <td>' . $row['alamat'] . '</td>
-            <td>' . $row['telp'] .  '</td>
+            <td>' . $row['telp'] . '</td>
             <td>' . $row['email'] . '</td>
             <td>' . $row['jk'] . '</td>
             <td>
-                <a href="edit.php?id=' . $row['nomor'] . '" class="button button-warning"> Edit </a>
-                <a href="delete.php?id=' . $row['nomor'] . '" class="button button-danger"> Hapus </a>
+                <a href="edit.php?id=' . $row['nomor'] . '" class="btn btn-warning"> Edit </a>
+                <a href="delete.php?id=' . $row['nomor'] . '" class="btn btn-danger"> Hapus </a>
             </td>
         </tr>';
 }
