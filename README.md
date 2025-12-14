@@ -128,3 +128,13 @@ Pada file `config.php` atur nama database pada kode
 ```bash
 $db_name = 'nama_database';
 ```
+# Bootstrap
+
+[Website](https://getbootstrap.com)
+
+[Dokumentasi](https://getbootstrap.com/docs/5.3/getting-started/introduction)
+
+## Referensi Belajar
+<https://www.malasngoding.com/tutorial/bootstrap>
+
+<https://youtube.com/playlist?list=PL4cUxeGkcC9joIM91nLzd_qaH_AimmdAR&si>
