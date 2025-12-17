@@ -40,7 +40,7 @@ Struktur tabel `peserta`
 | `id_kelas`    | `int`     | `11`  | `NOT_NULL` `AUTO_INCREMENT`    |
 | `nama_kelas`  | `varchar` | `255` |                                |
 
-`tingkat-kelas`
+`tingkat_kelas`
 
 | Nama Kolom            | Tipe Data | Nilai | Aturan                          |
 | :--------             | :-------  | :--   | :--                             |

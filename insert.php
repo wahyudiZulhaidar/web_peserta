@@ -4,6 +4,9 @@
 <?php
 require_once 'config.php';
 
+$query_kelas = mysqli_query($conn, "SELECT * FROM kelas");
+$query_tingkat = mysqli_query($conn, "SELECT * FROM tingkat_kelas");
+
 if (isset($_POST['submit'])) {
     $nama = $_POST['nama'];
     $alamat = $_POST['alamat'];
@@ -11,7 +14,11 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $jk = $_POST['jk'];
 
-    $sql = "INSERT INTO peserta (nama, alamat, telp, email, jk) VALUES ('$nama', '$alamat', '$telp', '$email', '$jk')";
+    $id_kelas = $_POST['id_kelas'];
+    $id_tingkat = $_POST['id_tingkat_kelas'];
+
+    $sql = "INSERT INTO peserta (nama, alamat, telp, email, jk, id_kelas, id_tingkat_kelas) 
+            VALUES ('$nama', '$alamat', '$telp', '$email', '$jk', '$id_kelas', '$id_tingkat')";
 
     if (mysqli_query($conn, $sql)) {
         header("Location: peserta.php");
@@ -22,48 +29,65 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<div class="position-absolute top-0 start-50 translate-middle-x">
-
-    <div class="text-center mt-3">
-        <h1>Tambah Peserta Baru</h1><br>
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1>Tambah Peserta Baru</h1>
     </div>
-    
-    <div class="row g-3 align-items-center">
-        <form action="" method="POST">
-            <p>
-                <label class="form-label">Nama Lengkap:</label><br>
-                <input class="form-control" type="text" name="nama" required>
-            </p>
-            <p>
-                <label class="form-label">Alamat:</label><br>
-                <textarea class="form-control" name="alamat" required></textarea>
-            </p>
-            <p>
-                <label class="form-label">No. Telepon:</label><br>
-                <input class="form-control" type="text" name="telp" required>
-            </p>
-            <p>
-                <label class="form-label col-sm-2 col-form-label">Email:</label><br>
-                <input class="form-control" type="email" name="email" required>
-            </p>
-            <p>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="jk" value="Pria" required>
-                <label class="form-check-label" for="jk_pria">
-                    Pria
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="jk" value="Wanita" required>
-                <label class="form-check-label" for="jk_wanita">
-                    Wanita
-                </label>
-            </div>
-            </p>
-            <p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form action="" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Nama Lengkap:</label>
+                    <input class="form-control" type="text" name="nama" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Pilih Kelas:</label>
+                    <select class="form-select" name="id_kelas" required>
+                        <option value="">-- Pilih Kelas --</option>
+                        <?php while ($row = mysqli_fetch_assoc($query_kelas)) { ?>
+                            <option value="<?= $row['id_kelas'] ?>"><?= $row['nama_kelas'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Pilih Tingkat:</label>
+                    <select class="form-select" name="id_tingkat_kelas" required>
+                        <option value="">-- Pilih Tingkat --</option>
+                        <?php while ($row = mysqli_fetch_assoc($query_tingkat)) { ?>
+                            <option value="<?= $row['id_tingkat_kelas'] ?>"><?= $row['tingkat_kelas'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Alamat:</label>
+                    <textarea class="form-control" name="alamat" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">No. Telepon:</label>
+                    <input class="form-control" type="text" name="telp" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email:</label>
+                    <input class="form-control" type="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label d-block">Jenis Kelamin:</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="jk" value="Pria" required>
+                        <label class="form-check-label">Pria</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="jk" value="Wanita" required>
+                        <label class="form-check-label">Wanita</label>
+                    </div>
+                </div>
                 <button type="submit" name="submit" class="btn btn-primary">Simpan Data</button>
                 <a href="peserta.php" class="btn btn-danger">Batal</a>
-            </p>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

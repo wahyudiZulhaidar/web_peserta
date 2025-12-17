@@ -12,10 +12,9 @@ if (isset($_GET['id'])) {
     if (mysqli_query($conn, $sql)) {
         echo '
         <div class="container mt-5"> <div class="text-center"> <h1 class="mb-4">Data Berhasil Dihapus</h1> <a href="peserta.php" class="btn btn-primary">Kembali ke Daftar Peserta</a>
-                
             </div>
         </div>';
-        
+
     } else {
         echo '<div class="container mt-5"><div class="alert alert-danger">Gagal menghapus data: ' . mysqli_error($conn) . '</div></div>';
     }

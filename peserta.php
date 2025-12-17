@@ -4,25 +4,31 @@
 <?php
 require_once 'config.php';
 
-$sql = "SELECT * FROM peserta";
+$sql = "SELECT peserta.*, kelas.nama_kelas, tingkat_kelas.tingkat_kelas 
+        FROM peserta 
+        JOIN kelas ON peserta.id_kelas = kelas.id_kelas 
+        JOIN tingkat_kelas ON peserta.id_tingkat_kelas = tingkat_kelas.id_tingkat_kelas";
 
 $query = mysqli_query($conn, $sql);
 
 if (!$query) {
     die('SQL Error: ' . mysqli_error($conn));
 }
+?>
 
-echo '
-<div class="text-center mt-3">
-<h1>Nama Peserta</h1>
-</div>
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h1>Nama Peserta</h1>
+    </div>
 
-<a href="insert.php?id=" class="btn btn-primary"> Tambah Data Baru </a><br><br>
+    <a href="insert.php" class="btn btn-primary mb-3"> Tambah Data Baru </a>
 
-<table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Nama</th>
+                <th>Kelas</th>
+                <th>Tingkat</th>
                 <th>Alamat</th>
                 <th>Nomor Telepon</th>
                 <th>Email</th>
@@ -30,19 +36,24 @@ echo '
                 <th>Aksi</th>
             </tr>
         </thead>
-    <tbody>
-</div>';
-
-while ($row = mysqli_fetch_array($query)) {
-    echo '<tr>
-            <td>' . $row['nama'] . '</td>
-            <td>' . $row['alamat'] . '</td>
-            <td>' . $row['telp'] . '</td>
-            <td>' . $row['email'] . '</td>
-            <td>' . $row['jk'] . '</td>
-            <td>
-                <a href="edit.php?id=' . $row['id_peserta'] . '" class="btn btn-warning"> Edit </a>
-                <a href="delete.php?id=' . $row['id_peserta'] . '" class="btn btn-danger"> Hapus </a>
-            </td>
-        </tr>';
-}
+        <tbody>
+            <?php
+            while ($row = mysqli_fetch_array($query)) {
+                echo '<tr>
+                        <td>' . $row['nama'] . '</td>
+                        <td>' . $row['nama_kelas'] . '</td>
+                        <td>' . $row['tingkat_kelas'] . '</td>    
+                        <td>' . $row['alamat'] . '</td>
+                        <td>' . $row['telp'] . '</td>
+                        <td>' . $row['email'] . '</td>
+                        <td>' . $row['jk'] . '</td>
+                        <td>
+                            <a href="edit.php?id=' . $row['id_peserta'] . '" class="btn btn-warning btn-sm"> Edit </a>
+                            <a href="delete.php?id=' . $row['id_peserta'] . '" class="btn btn-danger btn-sm"> Hapus </a>
+                        </td>
+                    </tr>';
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
