@@ -11,7 +11,7 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-$sql_get = "SELECT * FROM peserta WHERE nomor = '$id'";
+$sql_get = "SELECT * FROM peserta WHERE id_peserta = '$id'";
 $query_get = mysqli_query($conn, $sql_get);
 $data = mysqli_fetch_assoc($query_get);
 
@@ -26,7 +26,7 @@ if (isset($_POST['simpan'])) {
     $email = $_POST['email'];
     $jk = $_POST['jk'];
 
-    $sql_update = "UPDATE peserta SET nama='$nama', alamat='$alamat', telp='$telp', email='$email', jk='$jk' WHERE nomor=$id";
+    $sql_update = "UPDATE peserta SET nama='$nama', alamat='$alamat', telp='$telp', email='$email', jk='$jk' WHERE id_peserta=$id";
 
     if (mysqli_query($conn, $sql_update)) {
         header('Location: peserta.php');
@@ -38,7 +38,9 @@ if (isset($_POST['simpan'])) {
 ?>
 
 <div class="position-absolute top-0 start-50 translate-middle-x">
-    <h1>Edit Data Peserta</h1>
+    <div class="text-center mt-3">
+        <h1>Edit Data Peserta</h1><br>
+    </div>
 
     <div class="row g-3 align-items-center">
         <form action="" method="POST"">

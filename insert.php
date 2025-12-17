@@ -23,8 +23,11 @@ if (isset($_POST['submit'])) {
 ?>
 
 <div class="position-absolute top-0 start-50 translate-middle-x">
-    <h1>Tambah Peserta Baru</h1><br>
 
+    <div class="text-center mt-3">
+        <h1>Tambah Peserta Baru</h1><br>
+    </div>
+    
     <div class="row g-3 align-items-center">
         <form action="" method="POST">
             <p>

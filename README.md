@@ -24,14 +24,14 @@ C:\xampp\htdocs
 ## 3. Database
 Struktur tabel
 
-| Nama Kolom | Tipe Data | Nilai           | Aturan                         |
-| :--------  | :-------  | :-----          | :--                            |
-| `nomor`    | `int`     | `11`            | `NOT_NULL` `AUTO_INCREMENT`    |
-| `nama`     | `varchar` | `255`           |                                |
-| `alamat`   | `text`    |                 |                                |
-| `telp`     | `varchar` | `255`           |                                |
-| `email`    | `varchar` | `255`           |                                |
-| `jk`       | `enum`    | `Pria` `Wanita` |                                |
+| Nama Kolom    | Tipe Data | Nilai           | Aturan                         |
+| :--------     | :-------  | :-----          | :--                            |
+| `id_peserta`  | `int`     | `11`            | `NOT_NULL` `AUTO_INCREMENT`    |
+| `nama`        | `varchar` | `255`           |                                |
+| `alamat`      | `text`    |                 |                                |
+| `telp`        | `varchar` | `255`           |                                |
+| `email`       | `varchar` | `255`           |                                |
+| `jk`          | `enum`    | `Pria` `Wanita` |                                |
 >   Catatan : Nilai pada nomor akan terus bertambah walaupun nomor pada data sebelumnya di hapus
 
 ### Pembuatan Database

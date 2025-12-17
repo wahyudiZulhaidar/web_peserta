@@ -13,7 +13,7 @@ if (!$query) {
 }
 
 echo '
-<div class="position-relative top-0 start-50">
+<div class="text-center mt-3">
 <h1>Nama Peserta</h1>
 </div>
 
@@ -41,8 +41,8 @@ while ($row = mysqli_fetch_array($query)) {
             <td>' . $row['email'] . '</td>
             <td>' . $row['jk'] . '</td>
             <td>
-                <a href="edit.php?id=' . $row['nomor'] . '" class="btn btn-warning"> Edit </a>
-                <a href="delete.php?id=' . $row['nomor'] . '" class="btn btn-danger"> Hapus </a>
+                <a href="edit.php?id=' . $row['id_peserta'] . '" class="btn btn-warning"> Edit </a>
+                <a href="delete.php?id=' . $row['id_peserta'] . '" class="btn btn-danger"> Hapus </a>
             </td>
         </tr>';
 }
