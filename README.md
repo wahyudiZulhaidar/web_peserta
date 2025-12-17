@@ -22,23 +22,23 @@ C:\xampp\htdocs
 
 
 ## 3. Database
-Struktur tabel `peserta`
-| Nama Kolom            | Tipe Data | Nilai           | Aturan                         |
-| :--------             | :-------  | :-----          | :--                            |
-| `id_peserta`          | `int`     | `11`            | `NOT_NULL` `AUTO_INCREMENT`    |
-| `nama`                | `varchar` | `255`           |                                |
-| `alamat`              | `text`    |                 |                                |
-| `telp`                | `varchar` | `255`           |                                |
-| `email`               | `varchar` | `255`           |                                |
-| `jk`                  | `enum`    | `Pria` `Wanita` |                                |
-| `id_kelas`            | `int`     | `11`            | `FOREIGN_KEY`                  |
-| `id_tingkat_kelas`    | `int`     | `11`            | `FOREIGN_KEY`                  |
+Struktur tabel `anggota`
+| Nama Kolom    | Tipe Data | Nilai           | Aturan                         |
+| :--------     | :-------  | :-----          | :--                            |
+| `id_peserta`  | `int`     | `11`            | `NOT_NULL` `AUTO_INCREMENT`    |
+| `nama`        | `varchar` | `255`           |                                |
+| `alamat`      | `text`    |                 |                                |
+| `notel`       | `varchar` | `255`           |                                |
+| `email`       | `varchar` | `255`           |                                |
+| `jk`          | `enum`    | `Pria` `Wanita` |                                |
 
-`kelas`
-| Nama Kolom    | Tipe Data | Nilai | Aturan                         |
-| :--------     | :-------  | :--   | :--                            |
-| `id_kelas`    | `int`     | `11`  | `NOT_NULL` `AUTO_INCREMENT`    |
-| `nama_kelas`  | `varchar` | `255` |                                |
+`kursus`
+| Nama Kolom            | Tipe Data | Nilai | Aturan                            |
+| :--------             | :-------  | :--   | :--                               |
+| `id_kursus`           | `int`     | `11`  | `NOT_NULL` `AUTO_INCREMENT`       |
+| `id_anggota`          | `int`     | `11`  | `FOREIGN_KEY`                     |
+| `id_tingkat_kelas`    | `int`     | `11`  | `FOREIGN_KEY`                     |
+| `status`              | `enum`    | `Aktif` `Tidak Aktif` | `Default: Aktif`  |
 
 `tingkat_kelas`
 
@@ -46,8 +46,6 @@ Struktur tabel `peserta`
 | :--------             | :-------  | :--   | :--                             |
 | `id_tingkat_kelas`    | `int`     | `11`  | `NOT_NULL` `AUTO_INCREMENT`     |
 | `tingkat_kelas`       | `varchar` | `255` | `NOT_NULL`                      |
-
->   Catatan : Nilai pada nomor akan terus bertambah walaupun nomor pada data sebelumnya di hapus
 
 ### Pembuatan Database
 
