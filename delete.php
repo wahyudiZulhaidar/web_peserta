@@ -7,11 +7,11 @@ require_once 'config.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $sql = "DELETE FROM peserta WHERE id_peserta = '$id'";
+    $sql = "DELETE FROM kursus WHERE id_kursus = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         echo '
-        <div class="container mt-5"> <div class="text-center"> <h1 class="mb-4">Data Berhasil Dihapus</h1> <a href="peserta.php" class="btn btn-primary">Kembali ke Daftar Peserta</a>
+        <div class="container mt-5"> <div class="text-center"> <h1 class="mb-4">Data Berhasil Dihapus</h1> <a href="index.php" class="btn btn-primary">Kembali ke Daftar Peserta</a>
             </div>
         </div>';
 

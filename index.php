@@ -4,10 +4,9 @@
 <?php
 require_once 'config.php';
 
-$sql = "SELECT peserta.*, kelas.nama_kelas, tingkat_kelas.tingkat_kelas 
-        FROM peserta 
-        JOIN kelas ON peserta.id_kelas = kelas.id_kelas 
-        JOIN tingkat_kelas ON peserta.id_tingkat_kelas = tingkat_kelas.id_tingkat_kelas";
+$sql = "SELECT id_kursus, nama, notel, jk, tingkat_kelas, status_kursus FROM kursus
+        JOIN anggota ON kursus.id_anggota = anggota.id_anggota
+        JOIN tingkat_kelas ON kursus.id_tingkat_kelas = tingkat_kelas.id_tingkat_kelas;";
 
 $query = mysqli_query($conn, $sql);
 
@@ -22,17 +21,16 @@ if (!$query) {
     </div>
 
     <a href="insert.php" class="btn btn-primary mb-3"> Tambah Data Baru </a>
+    <a href="tambahAnggota.php" class="btn btn-primary mb-3"> Tambah Anggota Baru </a>
 
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Nama</th>
-                <th>Kelas</th>
-                <th>Tingkat</th>
-                <th>Alamat</th>
                 <th>Nomor Telepon</th>
-                <th>Email</th>
                 <th>Jenis Kelamin</th>
+                <th>Tingkat Kelas</th>
+                <th>Status</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -41,15 +39,13 @@ if (!$query) {
             while ($row = mysqli_fetch_array($query)) {
                 echo '<tr>
                         <td>' . $row['nama'] . '</td>
-                        <td>' . $row['nama_kelas'] . '</td>
-                        <td>' . $row['tingkat_kelas'] . '</td>    
-                        <td>' . $row['alamat'] . '</td>
-                        <td>' . $row['telp'] . '</td>
-                        <td>' . $row['email'] . '</td>
-                        <td>' . $row['jk'] . '</td>
+                        <td>' . $row['notel'] . '</td>
+                        <td>' . $row['jk'] . '</td>    
+                        <td>' . $row['tingkat_kelas'] . '</td>
+                        <td>' . $row['status_kursus'] . '</td> 
                         <td>
-                            <a href="edit.php?id=' . $row['id_peserta'] . '" class="btn btn-warning btn-sm"> Edit </a>
-                            <a href="delete.php?id=' . $row['id_peserta'] . '" class="btn btn-danger btn-sm"> Hapus </a>
+                            <a href="edit.php?id=' . $row['id_kursus'] . '" class="btn btn-warning btn-sm"> Edit </a>
+                            <a href="delete.php?id=' . $row['id_kursus'] . '" class="btn btn-danger btn-sm"> Hapus </a>
                         </td>
                     </tr>';
             }

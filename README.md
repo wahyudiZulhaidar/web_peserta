@@ -23,29 +23,39 @@ C:\xampp\htdocs
 
 ## 3. Database
 Struktur tabel `anggota`
-| Nama Kolom    | Tipe Data | Nilai           | Aturan                         |
-| :--------     | :-------  | :-----          | :--                            |
-| `id_peserta`  | `int`     | `11`            | `NOT_NULL` `AUTO_INCREMENT`    |
-| `nama`        | `varchar` | `255`           |                                |
-| `alamat`      | `text`    |                 |                                |
-| `notel`       | `varchar` | `255`           |                                |
-| `email`       | `varchar` | `255`           |                                |
-| `jk`          | `enum`    | `Pria` `Wanita` |                                |
+| Nama Kolom    | Tipe Data | Nilai           | Aturan                          |
+| :--------     | :-------  | :-----          | :--                             |
+| `id_anggota`  | `int`     | `11`            | `AUTO_INCREMENT`, `NOT_NULL`    |
+| `nama`        | `varchar` | `255`           | `NOT_NULL`                      |   
+| `alamat`      | `text`    |                 | `NOT_NULL`                      |
+| `notel`       | `varchar` | `255`           | `NOT_NULL`                      |
+| `email`       | `varchar` | `255`           | `NOT_NULL`                      |
+| `jk`          | `enum`    | `Pria` `Wanita` | `NOT_NULL`                      |
 
 `kursus`
-| Nama Kolom            | Tipe Data | Nilai | Aturan                            |
-| :--------             | :-------  | :--   | :--                               |
-| `id_kursus`           | `int`     | `11`  | `NOT_NULL` `AUTO_INCREMENT`       |
-| `id_anggota`          | `int`     | `11`  | `FOREIGN_KEY`                     |
-| `id_tingkat_kelas`    | `int`     | `11`  | `FOREIGN_KEY`                     |
-| `status`              | `enum`    | `Aktif` `Tidak Aktif` | `Default: Aktif`  |
+| Nama Kolom            | Tipe Data | Nilai                 | Aturan                        |
+| :--------             | :-------  | :--                   | :--                           |
+| `id_kursus`           | `int`     | `11`                  | `AUTO_INCREMENT`, `NOT_NULL`  |
+| `id_anggota`          | `int`     | `11`                  | `FOREIGN_KEY`' `NOT_NULL`     |
+| `id_tingkat_kelas`    | `int`     | `11`                  | `FOREIGN_KEY`' `NOT_NULL`     |
+| `status_kursus`       | `enum`    | `Aktif` `Tidak Aktif` | `Default: Aktif`, `NOT_NULL`  |
 
 `tingkat_kelas`
 
-| Nama Kolom            | Tipe Data | Nilai | Aturan                          |
-| :--------             | :-------  | :--   | :--                             |
-| `id_tingkat_kelas`    | `int`     | `11`  | `NOT_NULL` `AUTO_INCREMENT`     |
-| `tingkat_kelas`       | `varchar` | `255` | `NOT_NULL`                      |
+| Nama Kolom            | Tipe Data | Nilai | Aturan                        |
+| :--------             | :-------  | :--   | :--                           |
+| `id_tingkat_kelas`    | `int`     | `11`  | `AUTO_INCREMENT`, `NOT_NULL`  |
+| `tingkat_kelas`       | `varchar` | `255` | `NOT_NULL`                    |
+
+`absensi`
+| Nama Kolom            | Tipe Data | Nilai                 | Aturan                        |
+| :--------             | :-------  | :--                   | :--                           |
+| `id_absensi`          | `int`     | `11`                  | `AUTO_INCREMENT`, `NOT_NULL`  |
+| `id_kursus`           | `int`     | `11`                  | `FOREIGN_KEY`, `NOT_NULL`     |
+| `pertemuan`           | `int`     |                       | `NOT_NULL`                    |
+| `status_pertemuan`    | `enum`    | `Hadir` `Tidak Hadir` | `NOT_NULL`, `Default: Hadir`  |
+
+![ERD](https://i.ibb.co.com/Z6ZjHjK5/ERD.png)
 
 ### Pembuatan Database
 
