@@ -4,9 +4,10 @@
 <?php
 require_once 'config.php';
 
-$sql = "SELECT id_kursus, nama, notel, jk, tingkat_kelas, status_kursus FROM kursus
+$sql = "SELECT kursus.id_kursus, anggota.nama, anggota.notel, anggota.jk, tingkat_kelas.tingkat_kelas, kursus.status_kursus FROM kursus
         JOIN anggota ON kursus.id_anggota = anggota.id_anggota
-        JOIN tingkat_kelas ON kursus.id_tingkat_kelas = tingkat_kelas.id_tingkat_kelas;";
+        JOIN tingkat_kelas ON kursus.id_tingkat_kelas = tingkat_kelas.id_tingkat_kelas
+        ORDER BY kursus.id_kursus ASC";
 
 $query = mysqli_query($conn, $sql);
 
@@ -22,6 +23,7 @@ if (!$query) {
 
     <a href="insert.php" class="btn btn-primary mb-3"> Tambah Data Baru </a>
     <a href="tambahAnggota.php" class="btn btn-primary mb-3"> Tambah Anggota Baru </a>
+    <a href="absensi.php" class="btn btn-primary mb-3"> Absensi Peserta </a>
 
     <table class="table table-striped table-bordered">
         <thead>
