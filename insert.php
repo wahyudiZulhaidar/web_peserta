@@ -1,5 +1,5 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <?php
 require_once 'config.php';
@@ -36,8 +36,10 @@ $query_tingkat = mysqli_query($conn, "SELECT * FROM tingkat_kelas");
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Simpan Data</button>
-                <a href="index.php" class="btn btn-danger">Batal</a>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                    <a href="index.php" class="btn btn-danger">Batal</a>
+                </div>
             </form>
         </div>
     </div>

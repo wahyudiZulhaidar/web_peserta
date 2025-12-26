@@ -6,86 +6,60 @@
 <?php
 require_once 'config.php';
 ?>
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1>Data Kelas Peserta</h1>
+    </div>
 
-<div class="sec-php">
-    <div class="container mt-4">
-        <div class="text-center mb-4">
-            <h1>Data Peserta (Versi PHP)</h1>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+            <button class="nav-link" id="nav-form-tab" data-bs-toggle="tab" data-bs-target="#nav-form" type="button"
+                role="tab" aria-controls="nav-form" aria-selected="false">Tambah Data</button>
         </div>
+    </nav>
 
-        <a href="insert.php" class="btn btn-primary mb-3">Tambah Data Baru</a>
-        <a href="tambahAnggota.php" class="btn btn-primary mb-3"> Tambah Anggota Baru </a>
-        <a href="absensi.php" class="btn btn-primary mb-3"> Absensi Peserta </a>
-
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Nomor Telepon</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Tingkat Kelas</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="tabel-body-php">
-                <?php include 'get_data.php'; ?>
-            </tbody>
-        </table>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+            tabindex="0">
+            <div class="sec-js">
+                <div class="container mt-4">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Nomor Telepon</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Tingkat Kelas</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabel-body-js">
+                            <?php include 'get_data.php'; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-form" role="tabpanel" aria-labelledby="nav-form-tab" tabindex="0">
+            <div id="form-container" class="container mt-4"></div>
+        </div>
     </div>
 </div>
 
-<div class="sec-js" style="display:none;">
-    <div class="container mt-4">
-        <div class="text-center mb-4">
-            <h1>Data Peserta (Versi JS)</h1>
-        </div>
-
-        <button id="btn-tambah-data" class="btn btn-primary mb-3">Tambah Data Baru</button>
-        <a href="tambahAnggota.php" class="btn btn-primary mb-3"> Tambah Anggota Baru</a>
-        <a href="absensi.php" class="btn btn-primary mb-3"> Absensi Peserta</a>
-
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Nomor Telepon</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Tingkat Kelas</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="tabel-body-js">
-                <?php include 'get_data.php'; ?>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="container mt-3">
-    <button id="btn-toggle-js" class="btn btn-secondary">Ubah Halaman Ke Javascript</button>
-</div>
-
-<div id="form-container" class="container mt-4"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     $(document).ready(function () {
-
-        //Ubah Versi
-        $("#btn-toggle-js").click(function () {
-            $(".sec-php").toggle();
-            $(".sec-js").toggle();
-            $("#form-container").empty();
-            var textBtn = $(".sec-js").is(":visible") ? " Kembali ke PHP" : "Ubah Halaman Ke Javascript";
-            $(this).text(textBtn);
-        });
-
+        
+        
         //Tampilkan form
-        $("#btn-tambah-data").click(function (e) {
+        $("#nav-form-tab").click(function (e) {
             e.preventDefault();
             $("#form-container").load("insert.php", function () {
-                $("#form-container").find("h1").closest("div").hide();
+                $("#form-container").find("h1").addClass("h3 text-center mb-4");
 
                 var btnBatal = $("#form-container").find(".btn-danger");
 
@@ -106,7 +80,7 @@ require_once 'config.php';
             }
         });
 
-        // Submit data versi JS
+        // Submit data
         $(document).on("submit", "#form-container form", function (e) {
             e.preventDefault();
 
@@ -122,9 +96,6 @@ require_once 'config.php';
                 success: function (response) {
                     if (response.trim() == "success") {
                         $("#tabel-body-js").load("get_data.php");
-                        $("#tabel-body-php").load("get_data.php");
-                        $('html, body').animate({ scrollTop: 0 }, 500);
-
                         currentForm.trigger("reset");
                     } else {
                         alert("Gagal: " + response);
